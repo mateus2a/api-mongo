@@ -1,4 +1,6 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+
+const mongoosePaginate = require('mongoose-paginate');
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -15,7 +17,5 @@ const UserSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-
-const User = mongoose.model('User', UserSchema);
-
-export default User;
+UserSchema.plugin(mongoosePaginate);
+mongoose.model('User', UserSchema);
